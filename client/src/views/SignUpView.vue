@@ -7,9 +7,15 @@
       </div>
       <div class="mb-3">
         <input v-model="email" type="email" class="form-control" placeholder="Email" required>
+        <div v-if="!isValidEmail(email)" class="alert alert-danger mt-2" role="alert">
+          Please enter a valid email address.
+        </div>
       </div>
       <div class="mb-3">
         <input v-model="password" type="password" class="form-control" placeholder="Password" required>
+        <div v-if="!isValidPassword(password)" class="alert alert-warning mt-2" role="alert">
+          Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+        </div>
       </div>
       <button type="submit" class="btn btn-secondary w-100">Sign Up</button>
     </form>
@@ -35,26 +41,39 @@ export default {
   setup() {
     const store = useAuthStore();
     const router = useRouter();
+    const toast = useToast();
 
     const name = ref('');
     const email = ref('');
     const password = ref('');
     const isLoading = ref(false);
     const error = ref('');
-    const toast = useToast();
 
+    const isValidEmail = (email) => {
+      // Basic email validation
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    const isValidPassword = (password) => {
+      // Strong password validation
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+    };
 
     const signUpUser = async () => {
       try {
         isLoading.value = true;
+        if (!isValidEmail(email.value)) {
+          throw new Error('Please enter a valid email address.');
+        }
+        if (!isValidPassword(password.value)) {
+          throw new Error('Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
+        }
         await store.signUp({ name: name.value, email: email.value, password: password.value });
         router.push('/profile'); // Redirect to profile page after signup
-        toast.success('Registration successfull!');
-
+        toast.success('Registration successful!');
       } catch (error) {
-        console.error('Error signing up:', error.response.data.message);
-        toast.error('Enter Valid Details Or Check Connection');
-        error.value = error.response.data.message;
+        console.error('Error signing up:', error.message);
+        error.value = error.message;
         isLoading.value = false;
       }
     };
@@ -65,7 +84,9 @@ export default {
       password,
       isLoading,
       error,
-      signUpUser
+      signUpUser,
+      isValidEmail,
+      isValidPassword
     };
   }
 }

@@ -28,9 +28,15 @@
           </div>
           <div class="mb-3">
             <input v-model="updatedEmail" type="email" class="form-control" placeholder="Email" required>
+            <div v-if="!isValidEmail(updatedEmail)" class="alert alert-danger mt-2" role="alert">
+              Please enter a valid email address.
+            </div>
           </div>
           <div class="mb-3">
             <input v-model="updatedPassword" type="password" class="form-control" placeholder="New Password">
+            <div v-if="!isValidPassword(updatedPassword)" class="alert alert-warning mt-2" role="alert">
+              Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+            </div>
           </div>
           <button type="submit" class="btn btn-primary w-100">Save Changes</button>
         </form>
@@ -111,19 +117,28 @@ export default {
       try {
         isLoading.value = true;
         await store.deleteAccount();
-        router.push('/login');
+        router.push('/');
         toast.success('Account Deleted successfully!');
-
       } catch (error) {
         console.error('Failed to delete account:', error);
+        toast.error('Failed to delete account');
         isLoading.value = false;
       }
     };
 
     const logoutUser = () => {
       store.logout();
-      router.push('/');
-      toast.success('loggedOut!');
+      router.push('/login');
+    };
+
+    const isValidEmail = (email) => {
+      // Basic email validation
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    const isValidPassword = (password) => {
+      // Strong password validation
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
     };
 
     return {
@@ -138,7 +153,9 @@ export default {
       closeEditModal,
       submitEditProfile,
       deleteAccount,
-      logoutUser
+      logoutUser,
+      isValidEmail,
+      isValidPassword
     };
   }
 }
