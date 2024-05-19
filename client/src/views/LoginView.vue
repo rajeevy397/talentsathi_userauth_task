@@ -16,6 +16,7 @@
 <script>
 import { useAuthStore } from '../store';
 
+
 export default {
   name: 'LoginView',
   data() {

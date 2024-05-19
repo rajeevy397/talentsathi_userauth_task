@@ -23,9 +23,12 @@
 </template>
 
 <script>
+
 import { useAuthStore } from '../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+
+import { useToast } from 'vue-toastification';
 
 export default {
   name: 'SignUpView',
@@ -38,14 +41,19 @@ export default {
     const password = ref('');
     const isLoading = ref(false);
     const error = ref('');
+    const toast = useToast();
+
 
     const signUpUser = async () => {
       try {
         isLoading.value = true;
         await store.signUp({ name: name.value, email: email.value, password: password.value });
         router.push('/profile'); // Redirect to profile page after signup
+        toast.success('Registration successfull!');
+
       } catch (error) {
         console.error('Error signing up:', error.response.data.message);
+        toast.error('Enter Valid Details Or Check Connection');
         error.value = error.response.data.message;
         isLoading.value = false;
       }

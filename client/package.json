@@ -14,7 +14,8 @@
     "pinia": "^2.1.7",
     "prettier": "^3.2.5",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
