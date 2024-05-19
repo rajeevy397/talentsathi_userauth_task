@@ -53,5 +53,5 @@ A simple user authentication app built with Vue.js for the frontend and Node.js/
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/user-auth-app.git
+   git clone https://github.com/rajeevy397/user-auth-app.git
    cd user-auth-app/backend
