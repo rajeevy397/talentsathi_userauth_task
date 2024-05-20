@@ -59,8 +59,6 @@ A simple user authentication app built with Vue.js for the frontend and Node.js/
 2. npm install
 3. npm start
 
-### YouTube Video
-<p>Check out this video demonstration of the project:</p>
-<iframe width="560" height="315" src="[https://www.youtube.com/embed/dQw4w9WgXcQ](https://youtu.be/pzfcZBKDRx4?si=6vg4DBlF8p_BfnsX)" frameborder="0" allowfullscreen></iframe>
-
+### Project Demo
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pzfcZBKDRx4?si=3DOLnBuxPuchjkDA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
