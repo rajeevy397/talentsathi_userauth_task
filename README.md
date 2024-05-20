@@ -60,5 +60,4 @@ A simple user authentication app built with Vue.js for the frontend and Node.js/
 3. npm start
 
 ### Project Demo
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pzfcZBKDRx4?si=3DOLnBuxPuchjkDA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+https://github.com/rajeevy397/talentsathi_userauth_task/assets/94947701/27798abb-0c69-47c0-93a0-bc7c9f77d059
