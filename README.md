@@ -59,3 +59,5 @@ A simple user authentication app built with Vue.js for the frontend and Node.js/
 2. npm install
 3. npm start
 
+### Project Demo
+https://github.com/rajeevy397/talentsathi_userauth_task/assets/94947701/27798abb-0c69-47c0-93a0-bc7c9f77d059
